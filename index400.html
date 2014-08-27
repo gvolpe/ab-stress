@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script src="socket.io.js"></script>
+<script>
+	// socket.io specific code
+	var socket = io.connect('http://10.10.10.36:8095/room900');
+	
+	socket.on('connect', function() {
+		//$('#chat').addClass('connected');
+	});
+
+	socket.on('new_ball', function(msg) {
+		$('#lines').append($('<p>').append($('<em>').text(msg)));
+	});
+
+</script>
+</head>
+<body>
+	<h1>Bingo Balls</h1>
+	<div id="chat">
+		<div id="messages">
+			<div id="lines"></div>
+		</div>		
+	</div>
+</body>
+</html>

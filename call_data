@@ -1,0 +1,13 @@
+{
+    "call_type": "BINGO",
+    "power_ups": [
+                  {
+                    "power_up": "XPE",
+                    "numbers": [1,4,12,43,53,65,87,90]
+                  },
+                  {
+                    "power_up": "BI",
+                    "card_id": 0
+                  }
+                ]
+}

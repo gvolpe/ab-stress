@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+
+	function parsear() {
+		/*var data = '{"username":"gvolpe","position":"1"}';
+		var user = JSON.parse(data);
+		alert(user.username + ' - Position: ' + user.position);
+		*/
+		var datos = '{"name":"new_winner","args":[{"position":"1","call_type":"BINGO","username":"gvolpe"}]}';		
+		var obj = JSON.parse(datos);
+		alert('user: ' + obj.args[0].username + ' - position: ' + obj.args[0].position + ' - status: ' + obj.args[0].call_type);
+	}
+
+</script>
+</head>
+<body>
+	<h1>JSON Parse test</h1>
+	<div id="events">
+		<input type="button" onclick="parsear();" value="JSON Parse"/>
+	</div> 
+</body>
+</html>

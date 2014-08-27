@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="http://bingocrack.dev.etermax.com:8095/style/chat.css" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script src="http://bingocrack.dev.etermax.com:8095/socket.io.js"></script>
+<script>
+	// socket.io specific code
+	var socket = io.connect('http://bingocrack.dev.etermax.com:8095/room584');
+	
+	socket.on('connect', function() {
+		//$('#chat').addClass('connected');
+	});
+
+	socket.on('new_ball', function(args) {
+		$('#lines').append($('<p>').append($('<em>').text(args)));
+	});
+
+	socket.on('new_winner', function(data) {
+		var obj = JSON.parse(data);
+		var usuario = obj.args[0].username + ' - position: ' + obj.args[0].position + ' - status: ' + obj.args[0].call_type;
+		alert(usuario);
+		$('#wtf').append($('<p>').append($('<em>').text(usuario)));
+	});
+
+	socket.on('bingos_left', function(data) {
+		$('#wtf').append($('<p>').append($('<em>').text('Bingos left: ' + data)));
+	});
+
+	socket.on('lines_left', function(data) {
+		$('#wtf').append($('<p>').append($('<em>').text('Lines left: ' + data)));
+	});
+
+	socket.on('total_players', function(data) {
+		$('#wtf').append($('<p>').append($('<em>').text('Total players: ' + data)));
+	});
+
+	socket.on('total_cards', function(data) {
+		$('#wtf').append($('<p>').append($('<em>').text('Total cards: ' + data)));
+	});
+
+	socket.on('ended_game', function(data) {
+		$('#wtf').append($('<p>').append($('<em>').text('Game is ended...')));
+	});
+
+	socket.on('game_start', function(data) {
+		$('#wtf').append($('<p>').append($('<em>').text('Game Start!')));
+	});
+
+	socket.on('time_rebooted', function(data) {
+		$('#wtf').append($('<p>').append($('<em>').text('Time Rebooted. Not enough players. Wait ' + data + ' seconds')));
+	});
+
+</script>
+</head>
+<body>
+	<h1>Bingo Balls</h1>
+	<div id="chat">
+		<div id="messages">
+			<div id="lines"></div>
+		</div>		
+	</div>
+	<div id="events">
+		<div id="wtf"></div>
+	</div> 
+</body>
+</html>
